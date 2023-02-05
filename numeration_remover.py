@@ -1,4 +1,5 @@
 import os
+import shutil
 
 
 def is_numeration(file_name: str) -> bool:
@@ -19,9 +20,12 @@ def remove_numeration():
             if file.endswith('.txt'):
                 with open(os.path.join(current_dir, file), 'r') as input_file, \
                         open(os.path.join(output_dir, file), 'w') as outfile:
-                    for line in map(str.strip, input_file):
-                        # if numration:
-                        outfile.write(input_file.read())  # copy
+                    for line in map(str.strip, input_file.readlines()):
+                        print(line)
+                        if is_numeration(line):
+                            shutil.copy(os.path.join(current_dir, file[:-4], line), os.path.join(output_dir, line))
+                        else:
+                            shutil.move(os.path.join(current_dir, file[:-4], line), os.path.join(current_dir, line))
     except OSError as e:
         print("Can't create directory or file:", e.__class__.__name__)
 

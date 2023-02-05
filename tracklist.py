@@ -17,6 +17,8 @@ def parse_directories():
             continue
         elif not os.path.basename(directory) in os.listdir(current_dir):
             continue
+        elif os.path.basename(directory) == 'Original Tracklist':
+            continue
         else:
             i += 1
 
@@ -32,11 +34,12 @@ def parse_directories():
 
 def progress(progress_bar, label, current_dir):
     try:
-
         for directory, folder, files in os.walk(current_dir):
             if directory == current_dir:
                 continue
             elif not os.path.basename(directory) in os.listdir(current_dir):
+                continue
+            elif os.path.basename(directory) == 'Original Tracklist':
                 continue
             else:
                 name = os.path.basename(directory)
