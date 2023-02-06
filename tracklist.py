@@ -33,7 +33,6 @@ def parse_directories():
 
 
 def progress(progress_bar, label, current_dir):
-    generated_files = []
     try:
         for directory, folder, files in os.walk(current_dir):
             if directory == current_dir:
@@ -46,10 +45,13 @@ def progress(progress_bar, label, current_dir):
                 name = os.path.basename(directory)
                 res = sorted(filter(lambda file_name: file_name[0] != '.' and file_name.endswith('.mp3'), files))
                 label['text'] = f'Генерирую {name}.txt'
+                total_size = sum(map(lambda file_name: os.path.getsize(os.path.join(directory, file_name)), res))
+                count = len(res)
                 with open(f'{os.path.join(current_dir, name)}.txt', 'w', encoding='utf-8') as file:
+                    file.write(f'{total_size}, {count}\n')
                     file.write('\n'.join(res))
                 progress_bar['value'] += 1
-                time.sleep(0.5)
+                time.sleep(0.3)
         label['text'] = 'Генерация закончена'
     except Exception as e:
         label['text'] = f"Ошибка\n{e.__class__.__name__}: {e}"
