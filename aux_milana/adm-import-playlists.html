@@ -1,0 +1,31 @@
+		<style type="text/css">
+			button.vdsdev-parse{
+				margin: 5px;
+			}
+			#vdsdev-data-parse td, #vdsdev-data-parse th {
+				padding: 10px 5px;
+				text-align: center;
+			}
+			#vdsdev-data-parse td:first-child {
+				padding: 10px;
+				text-align: left;
+			}
+			#formfile {
+				display: inline;
+			}
+		</style>
+
+		<script type="text/javascript">
+		</script>
+		<h3>Загрузка новых плейлистов</h3>
+	  <form id="formfile"><input id="filename" name="filename[]" type="file" multiple></form><button onclick="writeMeSubmit(this);">Загрузить</button>
+		<div id="message_form"></div>
+		<h3>Загруженные плейлисты</h3>
+		<!-- <button class="vdsdev-parse" onclick="updateDataParse();">Обновить информацию</button> -->
+		<!-- <button class="vdsdev-parse" onclick="btnStartParse();" id="vdsdev-parsebutton">Парсить</button> -->
+		<table id="vdsdev-data-parse"></table>
+
+		<script type="text/javascript">
+			updateDataParse();
+			// setInterval(function(){updateDataParse();}, 60000);
+		</script>
