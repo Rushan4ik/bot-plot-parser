@@ -33,6 +33,7 @@ def parse_directories():
 
 
 def progress(progress_bar, label, current_dir):
+    generated_files = []
     try:
         for directory, folder, files in os.walk(current_dir):
             if directory == current_dir:
